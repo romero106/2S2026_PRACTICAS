@@ -1,83 +1,16 @@
 # Más allá de clases y objetos
+
+**Charla 2 de 3 · Profundización introductoria en programación orientada a objetos**
+
 ## Objetivo de la charla
 
-Al terminar, me gustaría que un estudiante pudiera decir algo parecido a:
+Al terminar, la idea principal es comprender que:
 
 > “Una clase no solo sirve para agrupar atributos y métodos. También podemos controlar cómo se crean y modifican sus objetos, reutilizar características mediante herencia y permitir que objetos relacionados se comporten de distintas maneras.”
 
-> [!NOTE]
-> La intención de esta charla **no es dominar Programación Orientada a Objetos**, sino comprender de forma intuitiva para qué existen algunos de sus conceptos más importantes.
-
 ---
 
-## 1. Recordatorio de la charla anterior
-
-
-### ¿Qué recordamos?
-
-```java
-class Estudiante {
-
-    String nombre;
-    String apellido;
-    int edad;
-    int nota;
-
-    void mostrarInformacion() {
-        System.out.println("Nombre: " + nombre );
-        System.out.println("Apellido: " + apellido);
-        System.out.println("Edad: " + edad + " años");
-        System.out.println("Nota: " + nota);
-    }
-
-    boolean aprobado() {
-        return nota >= 61;
-    }
-}
-
-```
-
-
-### La idea que ya conocemos
-
-```mermaid
-graph LR
-    A[Clase]
-    B[Objeto]
-    C[Atributos]
-    D[Métodos]
-
-    A --> B
-    B --> C
-    B --> D
-```
-
-
-
-Posibles ideas para anticipar:
-
-- Crear objetos de una manera más cómoda.
-- Evitar que cualquiera coloque valores incorrectos en sus atributos.
-- Evitar repetir código entre clases parecidas.
-- Permitir que objetos similares hagan una misma acción de formas diferentes.
-
----
-
-## 2. Constructores
-
-Hasta ahora podemos crear un estudiante y después asignar sus atributos uno por uno:
-
-```java
-Estudiante estudiante1 = new Estudiante();
-
-estudiante1.nombre = "Ana";
-estudiante1.apellido = "López";
-estudiante1.edad = 16;
-estudiante1.nota = 85;
-```
-
-
-### Constructor
+## 1. Constructores
 
 Un **constructor** es un bloque especial de una clase que se ejecuta cuando creamos un objeto y nos permite darle sus valores iniciales.
 
@@ -103,7 +36,6 @@ Ahora podemos crear el objeto así:
 Estudiante estudiante1 = new Estudiante("Ana", "López", 16, 85);
 ```
 
-
 ### Comparación
 
 Sin constructor personalizado:
@@ -123,7 +55,6 @@ Con constructor:
 Estudiante estudiante1 = new Estudiante("Ana", "López", 16, 85);
 ```
 
-
 ### ¿Qué significa `this`?
 
 `this` hace referencia al **objeto actual**.
@@ -135,9 +66,6 @@ this.nombre = nombre;
 Podemos leerlo como:
 
 > “El atributo `nombre` de este objeto recibirá el valor que llegó en `nombre`.”
-
-> [!NOTE]
-> No es necesario profundizar demasiado en `this`. Lo importante es comprender que nos ayuda a distinguir los atributos del objeto de los valores que recibe el constructor.
 
 ### Una forma de visualizarlo
 
@@ -402,6 +330,7 @@ public class Persona {
 
 > [!NOTE]
 > Los atributos siguen siendo `private`. Las clases hijas trabajan con ellos mediante los métodos públicos que ofrece `Persona`, manteniendo el encapsulamiento que acabamos de aprender.
+
 
 ### `Estudiante` hereda de `Persona`
 
@@ -853,21 +782,33 @@ Aquí podemos observar varias ideas de la charla trabajando juntas:
 - `accion()` tiene una implementación diferente en cada clase, mostrando la idea de **polimorfismo**.
 
 ---
-## 7. Preguntas de cierre
 
-| #   | Pregunta                                                                                                                                           | Opciones                                                                                                                                                                           | Correcta | Qué evalúa                               |
-| --- | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- | ---------------------------------------- |
-| 1   | En una clase `Estudiante`, ¿qué representan `nombre`, `edad` y `nota`?                                                                             | A) Métodos <br> B) Atributos <br> C) Objetos <br> D) Constructores                                                                                                                 | B        | Reconocimiento de atributos              |
-| 2   | ¿Para qué sirve principalmente un constructor?                                                                                                     | A) Eliminar objetos <br> B) Heredar atributos <br> C) Dar valores iniciales al crear un objeto <br> D) Proteger atributos                                                          | C        | Función de los constructores             |
-| 3   | Si nuestra clase se llama `Carro`, ¿cómo se llamaría su constructor?                                                                               | A) `constructor()` <br> B) `newCarro()` <br> C) `Carro()` <br> D) `void Carro()`                                                                                                   | C        | Sintaxis básica de constructores         |
-| 4   | Dentro de un constructor, ¿a qué hace referencia `this`?                                                                                           | A) A la clase padre <br> B) Al objeto actual <br> C) Al método actual <br> D) A todos los objetos                                                                                  | B        | Uso conceptual de `this`                 |
-| 5   | ¿Cuál de estos valores NO tendría sentido para la nota de un estudiante?                                                                           | A) 85 <br> B) 61 <br> C) 0 <br> D) -500                                                                                                                                            | D        | Necesidad de validar datos               |
-| 6   | ¿Qué busca principalmente el encapsulamiento?                                                                                                      | A) Crear más clases <br> B) Proteger los datos y controlar cómo se modifican <br> C) Hacer que todas las clases sean iguales <br> D) Eliminar métodos                              | B        | Concepto de encapsulamiento              |
-| 7   | Si un atributo es `private`, ¿qué significa?                                                                                                       | A) Que desaparece <br> B) Que nadie puede usarlo nunca <br> C) Que no puede modificarse directamente desde cualquier parte del programa <br> D) Que solo acepta números            | C        | Uso básico de `private`                  |
-| 8   | ¿Cuál relación representa mejor una herencia?                                                                                                      | A) Un carro tiene un motor <br> B) Una casa tiene una puerta <br> C) Un perro es un animal <br> D) Una computadora tiene un teclado                                                | C        | Identificación de relaciones de herencia |
-| 9   | Completar: `class Estudiante ______ Persona`                                                                                                       | A) implements <br> B) inherits <br> C) extends <br> D) private                                                                                                                     | C        | Uso de `extends` en Java                 |
-| 10  | Si `Estudiante extends Persona`, ¿qué puede aprovechar `Estudiante` de `Persona`?                                                                  | A) Nada <br> B) Características y comportamientos definidos en Persona <br> C) Solo el nombre de la clase <br> D) Únicamente constructores                                         | B        | Comprensión de la herencia               |
-| 11  | ¿Cuál relación NO debería representarse mediante herencia?                                                                                         | A) Gato → Animal <br> B) Profesor → Persona <br> C) Celular → Dispositivo electrónico <br> D) Motor → Carro                                                                        | D        | Diferencia entre “ES UN” y “TIENE UN”    |
-| 12  | Un `Perro` y un `Gato` tienen el método `hacerSonido()`, pero uno dice “Guau” y el otro “Miau”. ¿Qué concepto representa?                          | A) Encapsulamiento <br> B) Constructor <br> C) Polimorfismo <br> D) Abstracción                                                                                                    | C        | Identificación del polimorfismo          |
-| 13  | ¿Cuál frase describe mejor el polimorfismo?                                                                                                        | A) Ocultar todos los atributos <br> B) Una misma acción puede comportarse diferente según el objeto <br> C) Una clase solo puede tener un objeto <br> D) Copiar una clase completa | B        | Comprensión conceptual del polimorfismo  |
-| 14  | Para saber si un estudiante aprobó, guardamos solamente `nombre` y `nota`, ignorando su color favorito y talla de zapatos. ¿Qué estamos aplicando? | A) Herencia <br> B) Encapsulamiento <br> C) Polimorfismo <br> D) Abstracción                                                                                                       | D        | Comprensión de la abstracción            |
+## Preguntas de cierre
+
+|  No.  | Pregunta                                                                                                                                           | Opciones                                                                                                                                                                           | Respuesta correcta |
+| :---: | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | :----------------: |
+|   1   | En una clase `Estudiante`, ¿qué representan `nombre`, `edad` y `nota`?                                                                             | A) Métodos <br> B) Atributos <br> C) Objetos <br> D) Constructores                                                                                                                 |         B          |
+|   2   | ¿Para qué sirve principalmente un constructor?                                                                                                     | A) Eliminar objetos <br> B) Heredar atributos <br> C) Dar valores iniciales al crear un objeto <br> D) Proteger atributos                                                          |         C          |
+|   3   | Si nuestra clase se llama `Carro`, ¿cómo se llamaría su constructor?                                                                               | A) `constructor()` <br> B) `newCarro()` <br> C) `Carro()` <br> D) `void Carro()`                                                                                                   |         C          |
+|   4   | Dentro de un constructor, ¿a qué hace referencia `this`?                                                                                           | A) A la clase padre <br> B) Al objeto actual <br> C) Al método actual <br> D) A todos los objetos                                                                                  |         B          |
+|   5   | ¿Cuál de estos valores NO tendría sentido para la nota de un estudiante?                                                                           | A) 85 <br> B) 61 <br> C) 0 <br> D) -500                                                                                                                                            |         D          |
+|   6   | ¿Qué busca principalmente el encapsulamiento?                                                                                                      | A) Crear más clases <br> B) Proteger los datos y controlar cómo se modifican <br> C) Hacer que todas las clases sean iguales <br> D) Eliminar métodos                              |         B          |
+|   7   | Si un atributo es `private`, ¿qué significa?                                                                                                       | A) Que desaparece <br> B) Que nadie puede usarlo nunca <br> C) Que no puede modificarse directamente desde cualquier parte del programa <br> D) Que solo acepta números            |         C          |
+|   8   | ¿Cuál relación representa mejor una herencia?                                                                                                      | A) Un carro tiene un motor <br> B) Una casa tiene una puerta <br> C) Un perro es un animal <br> D) Una computadora tiene un teclado                                                |         C          |
+|   9   | Completar: `class Estudiante ______ Persona`                                                                                                       | A) implements <br> B) inherits <br> C) extends <br> D) private                                                                                                                     |         C          |
+|  10   | Si `Estudiante extends Persona`, ¿qué puede aprovechar `Estudiante` de `Persona`?                                                                  | A) Nada <br> B) Características y comportamientos definidos en Persona <br> C) Solo el nombre de la clase <br> D) Únicamente constructores                                         |         B          |
+|  11   | ¿Cuál relación NO debería representarse mediante herencia?                                                                                         | A) Gato → Animal <br> B) Profesor → Persona <br> C) Celular → Dispositivo electrónico <br> D) Motor → Carro                                                                        |         D          |
+|  12   | Un `Perro` y un `Gato` tienen el método `hacerSonido()`, pero uno dice “Guau” y el otro “Miau”. ¿Qué concepto representa?                          | A) Encapsulamiento <br> B) Constructor <br> C) Polimorfismo <br> D) Abstracción                                                                                                    |         C          |
+|  13   | ¿Cuál frase describe mejor el polimorfismo?                                                                                                        | A) Ocultar todos los atributos <br> B) Una misma acción puede comportarse diferente según el objeto <br> C) Una clase solo puede tener un objeto <br> D) Copiar una clase completa |         B          |
+|  14   | Para saber si un estudiante aprobó, guardamos solamente `nombre` y `nota`, ignorando su color favorito y talla de zapatos. ¿Qué estamos aplicando? | A) Herencia <br> B) Encapsulamiento <br> C) Polimorfismo <br> D) Abstracción                                                                                                       |         D          |
+
+---
+
+### Material de ejemplo
+
+Los ejemplos completos utilizados para conectar los conceptos de la charla se encuentran en la carpeta [`src/`](src/):
+
+- [`Persona.java`](./src/Persona.java) — clase general con la información y comportamientos compartidos.
+- [`Estudiante.java`](./src/Estudiante.java) — hereda de `Persona` y agrega la nota del estudiante.
+- [`Profesor.java`](./src/Profesor.java) — hereda de `Persona` y agrega el curso del profesor.
+- [`Main.java`](./src/Main.java) — crea los objetos y reúne los ejemplos de la charla.
